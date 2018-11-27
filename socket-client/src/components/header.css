@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+    text-align: center;
+}
+
+.header h1 {
+    color: #2196f3;
+}
+.body {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

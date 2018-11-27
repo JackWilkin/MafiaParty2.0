@@ -1,0 +1,40 @@
+.button-container, .form-container {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.home .button-container {
+    margin-top: 100px;
+}
+
+.town-hall {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.centered-content {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.icon {
+    width: 130px;
+    margin: auto;
+    display: block;
+}
+
+.role-assignment-title {
+    text-align: center;
+    font-size: 140%;
+    margin-top: 0;
+    margin-bottom: 30px;
+}

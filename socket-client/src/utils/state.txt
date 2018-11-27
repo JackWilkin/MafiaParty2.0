@@ -1,0 +1,31 @@
+name = 'Jack';
+owner = true;
+game = "0000";
+role = "mafia";
+players = [
+    {
+        name: 'Jack',
+        living: true,
+        role: 'mafia'
+    },
+    {
+        name: 'chloe',
+        living: true,
+        role: 'villager'
+    },
+    {
+        name: 'sindhu',
+        living: true,
+        role: 'villager'
+    },
+    {
+        name: 'zack',
+        living: true,
+        role: 'mafia'
+    },
+    {
+        name: 'sarah',
+        living: true,
+        role: 'villager'
+    }
+]

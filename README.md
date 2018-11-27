@@ -1,5 +1,5 @@
 # MafiaParty2.0
-Mafia Party but with Sockets
+Mafia Party but with Sockets. Run app in multiple tabs to see live updates
 
 To Run:
 
@@ -13,6 +13,7 @@ In the MafiaParty2.0 folder
 
 To run the client (localhost:3000) run ->
 
-  npm start in the socket-client folder
+  npm start 
 
-run app in multiple tabs to see live updates
+In the socket-client folder
+

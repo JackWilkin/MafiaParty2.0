@@ -21,18 +21,14 @@ const styles = theme => ({
     },
   });
 
-// this is required, pathname should be the name of the file this one should point to
-// you should also import it and add a <Route> to Main.js
-const params = {
-    pathname: "/",
-    name: '',
-    roomowner: true,
-  }
 
 //template -- replace template with the component's name
 class InitiateGame extends Component {
     constructor(props) {
-        super(props);
+      super(props);
+      debugger;
+      this.state = props.location;
+      this.state.pathname = "/CloseEyes";
     }
 
   render() {
@@ -43,7 +39,7 @@ class InitiateGame extends Component {
       <Header title={format('initiateGame.title.label')}>
       <p>{format('initiateGame.text')}</p>
       <div className="centered-content">
-                <Button className="ready-button"variant="contained" component={Link} to={params}>{format("global.ready.txt")}</Button>
+                <Button className="ready-button"variant="contained" component={Link} to={this.state}>{format("global.ready.txt")}</Button>
       </div>
        </Header>
       </div>

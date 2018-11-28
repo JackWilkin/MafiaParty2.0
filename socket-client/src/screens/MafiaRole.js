@@ -23,18 +23,13 @@ const styles = theme => ({
     },
   });
 
-// this is required, pathname should be the name of the file this one should point to
-// you should also import it and add a <Route> to Main.js
-const params = {
-    pathname: "/InitiateGame",
-    name: '',
-    roomowner: true,
-  }
-
 //template -- replace template with the component's name
 class MafiaRole extends Component {
     constructor(props) {
         super(props);
+        this.state = props.location;
+        this.state.role = 'mafia';
+        this.state.pathname = "/InitiateGame";
     }
 
   render() {
@@ -47,7 +42,7 @@ class MafiaRole extends Component {
       <img className="icon" src={icon} alt="mafia"/>
       <p>{format('mafiaRole.description')}</p>
       <div className="centered-content">
-        <Button variant="contained" component={Link} to={params} className={classes.button}>
+        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
           {format("global.next.txt")}
         </Button>
         </div>

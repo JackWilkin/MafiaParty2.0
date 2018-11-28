@@ -11,7 +11,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText'
-import { Link } from 'react-router-dom'
 import './styles.css'
 import mockedState from '../utils/mock';
 import format from '../utils/strings/strings';
@@ -32,7 +31,6 @@ class WaitingRoom extends Component {
   constructor(props){
     super(props);
     this.state = props.location;
-    this.pathname = "/RoleAssignment";
     this.addPlayer = this.addPlayer.bind(this);
     this.recieveStartGame = this.recieveStartGame.bind(this);
   }
@@ -51,13 +49,12 @@ class WaitingRoom extends Component {
   }
 
   recieveStartGame(playerList) {
-    debugger;
     this.setState({players: playerList});
     this.setState({pathname: "/VillagerRole"});
     for (var i = 0; i < this.state.players.length; i++) {
       if(this.state.players[i].name == this.state.name && this.state.players[i].role == 'mafia') {
-        this.state.role = 'mafia';
-        this.state.pathname = '/MafiaRole';
+        this.setState({role: 'mafia'});
+        this.setState({pathname: "/MafiaRole"});
       }
     }
     this.Redirect = true;

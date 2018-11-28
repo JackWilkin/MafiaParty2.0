@@ -21,20 +21,14 @@ const styles = theme => ({
   },
 });
 
-// this is required, pathname should be the name of the file this one should point to
-// you should also import it and add a <Route> to Main.js
-const params = {
-  pathname: "/",
-  name: '',
-  roomowner: true,
-}
-
 const mockedDeadPerson = 'Chloe';
 
 // template -- replace template with the component's name
 class BlankDied extends Component {
   constructor(props) {
     super(props);
+    this.state = props.location;
+    this.state.pathname = "/";
   }
 
   render() {
@@ -48,7 +42,7 @@ class BlankDied extends Component {
         <p>{mockedDeadPerson} Has Died!!!!</p>
         
         <div className="centered-content">
-          <Button variant="contained" component={Link} to={params} className={classes.button}>
+          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
             {format("global.next.txt")}
           </Button>
         </div>

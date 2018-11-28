@@ -21,18 +21,12 @@ const styles = theme => ({
     },
   });
 
-// this is required, pathname should be the name of the file this one should point to
-// you should also import it and add a <Route> to Main.js
-const params = {
-    pathname: "/MafiaVote",
-    name: '',
-    roomowner: true,
-  }
-
 // template -- replace template with the component's name
 class OpenEyes extends Component {
     constructor(props) {
-        super(props);
+      super(props);
+      this.state = props.location;
+      this.state.pathname = "/MafiaVote";
     }
 
   render() {
@@ -41,7 +35,7 @@ class OpenEyes extends Component {
     return (
       <Header title="Open Your Eyes">
         <p>Time to wake up</p>
-        <Button variant="contained" component={Link} to={params} className={classes.button}>
+        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
           {format("global.next.txt")}
         </Button>
       </Header>

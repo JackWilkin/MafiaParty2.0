@@ -40,7 +40,7 @@ class TownHall extends Component {
   constructor(props) {
     super(props);
     this.state = props.location;
-    this.state.pathname = "/BlankDied";
+    this.state.pathname = "/ElectionResults";
     this.handleChange = value => event => {
       this.setState({
         [value]: event.target.value,

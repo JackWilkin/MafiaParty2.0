@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
 // uncomment if you need these material components
 import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
-import icon from './images/eyesclosed.svg';
 
 // more components under component demos here
 // https://material-ui.com/
@@ -22,39 +21,38 @@ const styles = theme => ({
   },
 });
 
+const mockedDeadPerson = 'Chloe';
+
 // template -- replace template with the component's name
-class CloseEyes extends Component {
+class ElectionResults extends Component {
   constructor(props) {
     super(props);
     this.state = props.location;
-    debugger;
-    if (this.state.role === 'mafia' && !this.state.voteOver) {
-      this.state.pathname = "/OpenEyesMafia"
-    }
-    else {
-      this.state.pathname = "/OpenEyes";
-      this.state.voteOver = false;
-    }
+    this.state.pathname = "/CloseEyes";
   }
 
   render() {
     const { classes } = this.props;
 
     return (
-      <Header title="Close Your Eyes">
-      <img className="icon" src={icon} alt="mafia"/>
-        <p>It is night, time to go to sleep</p>
+      <Header title="Oh no!">
+        <p>The Town has decided....</p>
+
+        <p>{format("lorem")}</p>
+        <p>{mockedDeadPerson} Has Died!!!!</p>
+        
         <div className="centered-content">
-        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-          {format("global.next.txt")}
-        </Button>
+          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
+            {format("global.next.txt")}
+          </Button>
         </div>
       </Header>
+
     );
   }
 }
-CloseEyes.propTypes = {
+ElectionResults.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CloseEyes);
+export default withStyles(styles)(ElectionResults);

@@ -18,6 +18,7 @@ import MafiaVote from './screens/MafiaVote';
 import App from './App';
 import MafiaRole from './screens/MafiaRole';
 import VillagerRole from './screens/VillagerRole';
+import ElectionResults from './screens/ElectionResults';
 
 const theme = createMuiTheme({
   palette: {
@@ -47,6 +48,7 @@ class Main extends Component {
               <Route path="/SocketTest" component={App} />
               <Route path="/MafiaRole" component={MafiaRole} />
               <Route path="/VillagerRole" component={VillagerRole} />
+              <Route path="/ElectionResults" component={ElectionResults} />
             </Switch>
         </div>
       </MuiThemeProvider>

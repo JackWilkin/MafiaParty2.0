@@ -29,6 +29,10 @@ class BlankDied extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/TownHall";
+    if (this.state.isNight) {
+      this.state.pathname = "/CloseEyes";
+      this.voteOver = false;
+    }
   }
 
   render() {

@@ -29,6 +29,11 @@ io.on('connection', socket => {
     console.log('Player Added: ', player)
     io.sockets.emit('add player', player)
   })
+
+  socket.on('start game', (playerlist) => {
+    console.log('Game started with players:', playerlist)
+    io.sockets.emit('start game', playerlist)
+  })
   
   // disconnect is fired when a client leaves the server
   socket.on('disconnect', () => {

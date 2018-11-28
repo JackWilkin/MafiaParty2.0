@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Button from '@material-ui/core/Button';
@@ -15,6 +16,7 @@ import './styles.css'
 import mockedState from '../utils/mock';
 import format from '../utils/strings/strings';
 import socketIOClient from "socket.io-client";
+import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
   button: {
@@ -32,16 +34,33 @@ class WaitingRoom extends Component {
     this.state = props.location;
     this.pathname = "/RoleAssignment";
     this.addPlayer = this.addPlayer.bind(this);
+    this.recieveStartGame = this.recieveStartGame.bind(this);
   }
 
-  addPlayer(player) {
-    this.state.players.push(
-          {
-          name: player,
-          living: true,
-          role: ''
-          }
-        );
+  sendStartGame() {
+    const min = 0;
+    const max = this.state.players.length -1;
+    const rand = Math.floor(min + Math.random() * (max - min));
+
+    //everyone currently is villager
+    //give the game a villian
+    this.state.players[rand].role = 'mafia';
+
+    const socket = socketIOClient(format("serverURL"));
+    socket.emit('start game', this.state.players)
+  }
+
+  recieveStartGame(playerList) {
+    debugger;
+    this.setState({players: playerList});
+    this.setState({pathname: "/VillagerRole"});
+    for (var i = 0; i < this.state.players.length; i++) {
+      if(this.state.players[i].name == this.state.name && this.state.players[i].role == 'mafia') {
+        this.state.role = 'mafia';
+        this.state.pathname = '/MafiaRole';
+      }
+    }
+    this.Redirect = true;
     this.setState(this.state);
   }
 
@@ -52,19 +71,27 @@ class WaitingRoom extends Component {
       console.log(player); 
       }.bind(this)
     );
+
+    socket.on('start game', function(playerlist){
+      this.recieveStartGame(playerlist);
+      }.bind(this)
+    );
+  }
+
+  addPlayer(player) {
+    this.state.players.push(
+          {
+          name: player,
+          living: true,
+          role: 'villager'
+          }
+        );
+    this.setState(this.state);
   }
   
   render() {
     var playerList = [];
     let mocked = mockedState(this.props.location);
-    console.log(mocked);
-    // playerList.push(
-    // <ListItem>
-    //   <ListItemIcon>
-    //     <StarIcon />
-    //   </ListItemIcon>
-    //   <ListItemText>{mocked.name}</ListItemText>
-    // </ListItem>);
 
     for (var i = 0; i < mocked.players.length; i++) {
       let p = mocked.players[i];
@@ -77,6 +104,9 @@ class WaitingRoom extends Component {
     }
     const { classes } = this.props;
 
+    if (this.Redirect) {
+      return <Redirect to={this.state} />
+    }
     return (
       <Header title={format("waitingRoom.label")}>
         <div className="button-container">
@@ -96,7 +126,7 @@ class WaitingRoom extends Component {
           </List>
 
           {mocked.owner && 
-            <Button variant="contained" component={Link} to="/RoleAssignment" className={classes.button}>
+            <Button variant="contained" className={classes.button} onClick={() => this.sendStartGame()}>
                 {format("startGame.txt")}
             </Button>
           }

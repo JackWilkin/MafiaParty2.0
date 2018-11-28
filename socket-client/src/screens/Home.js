@@ -33,7 +33,7 @@ class Home extends Component {
                 {
                 name: player,
                 living: true,
-                role: ''
+                role: 'villager'
                 }
                 );
             this.setState(this.state);

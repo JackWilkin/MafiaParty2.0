@@ -38,7 +38,9 @@ const params = {
 class MafiaVote extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = props.location;
+        this.state.pathname = "/CloseEyes";
+        this.state.voteOver = true;
         this.handleChange = value => event => {
           this.setState({
             [value]: event.target.value,
@@ -62,7 +64,7 @@ class MafiaVote extends Component {
             
             <VoteRadioGroup user={mocked.name} players={mocked.players} />
             <div className="centered-content">
-            <Button variant="contained" component={Link} to="/CloseEyes" className="confirm-button">Confirm</Button>
+            <Button variant="contained" component={Link} to={this.state} className="confirm-button">Confirm</Button>
           </div>
         </Header>
       </div>

@@ -39,7 +39,8 @@ const params = {
 class TownHall extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = props.location;
+    this.state.pathname = "/BlankDied";
     this.handleChange = value => event => {
       this.setState({
         [value]: event.target.value,
@@ -50,7 +51,7 @@ class TownHall extends Component {
 
   render() {
     const { classes } = this.props;
-    let mocked = mockedState(this.props.location);
+    let mocked = mockedState(this.state);
     
     return (
       <div className="town-hall">
@@ -61,7 +62,7 @@ class TownHall extends Component {
           <h2 className="town-hall town-hall-title">Town Hall Ballot</h2>
           <VoteRadioGroup user={mocked.name} players={mocked.players} />
           <div className="centered-content">
-            <Button variant="contained" component={Link} to="/BlankDied" className="confirm-button">Confirm</Button>
+            <Button variant="contained" component={Link} to={this.state} className="confirm-button">Confirm</Button>
           </div>
         </Header>
       </div>

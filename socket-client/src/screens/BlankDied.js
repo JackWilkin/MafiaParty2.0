@@ -28,7 +28,7 @@ class BlankDied extends Component {
   constructor(props) {
     super(props);
     this.state = props.location;
-    this.state.pathname = "/";
+    this.state.pathname = "/TownHall";
   }
 
   render() {

@@ -28,7 +28,7 @@ class CloseEyes extends Component {
     super(props);
     this.state = props.location;
     debugger;
-    if (this.state.role === 'mafia') {
+    if (this.state.role === 'mafia' && !this.state.voteOver) {
       this.state.pathname = "/OpenEyesMafia"
     }
     else {

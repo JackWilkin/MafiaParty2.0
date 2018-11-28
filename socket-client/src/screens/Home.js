@@ -53,8 +53,8 @@ class Home extends Component {
         this.isCancelled = true;
     }
 
-    updatePathname = (pathname) => {
-        this.state.pathname = pathname;
+    updatePathname = (path) => {
+        this.state.pathname = path;
     }
 
     render() {

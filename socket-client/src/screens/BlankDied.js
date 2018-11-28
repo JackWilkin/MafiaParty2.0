@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom'
 
 // uncomment if you need these material components
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Header from '../components/Header';
 
 // more components under component demos here

@@ -4,12 +4,10 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
 import format from '../utils/strings/strings';
 import socketIOClient from "socket.io-client";
-import WaitingRoom from './WaitingRoom';
 
 const styles = theme => ({
   container: {

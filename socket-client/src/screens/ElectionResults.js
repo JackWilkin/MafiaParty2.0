@@ -43,29 +43,42 @@ class ElectionResults extends Component {
   }
 
   hangPlayer(player) {
+    //keep track of how many people have voted so we know if everyone has voted
     this.setState({voterTurnout: this.state.voterTurnout + 1});
+
+    //If there is no frontrunner this is the first ballot. player becomes frontrunner. 
     if (this.state.frontRunner.name == '') {
       this.setState({frontRunner: {name: player, votes: 1}});
     }
 
+    //If player already has votes add 1 more. 
     if(player in this.state.tally) {
       this.state.tally[player] = this.state.tally[player] + 1;
 
+      //Check if player is now frontrunner
       if(this.state.tally[player] > this.state.frontRunner.votes) {
         this.setState({frontRunner: {name: player, votes: this.state.tally[player]}});
       }
     }
     else {
+      //If player has no votes either became first frontrunner so just add player to tally
       this.state.tally[player] = 1;
     }
 
+    //If they died dont move on
     if(this.state.frontRunner.name == this.state.name) {
       this.setState({pathname: "/YouDied"});
     }
+    else {
+      this.setState({pathname: "/CloseEyes"});
+    }
+
+    //refresh the views
     this.setState(this.state);
   }
 
   election = () => {
+    debugger;
     const socket = socketIOClient(format("serverURL"));
     socket.emit('kill player', this.state.frontRunner.name); 
   }
@@ -85,7 +98,7 @@ class ElectionResults extends Component {
         {this.state.voterTurnout == this.state.players.length &&
           <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className={classes.button}
-            onClick={this.election()}>
+            onClick={() => this.election()}>
               {format("global.next.txt")}
             </Button>
           </div>

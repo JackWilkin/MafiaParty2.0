@@ -14,6 +14,7 @@ import Button  from '@material-ui/core/Button';
 import Header from '../components/Header';
 import VoteRadioGroup from '../components/VoteRadioGroup';
 import mockedState from '../utils/mock';
+import socketIOClient from "socket.io-client";
 
 // more components under component demos here
 // https://material-ui.com/
@@ -36,18 +37,23 @@ const params = {
 
 // template -- replace template with the component's name
 class MafiaVote extends Component {
-    constructor(props) {
-        super(props);
-        this.state = props.location;
-        this.state.pathname = "/CloseEyes";
-        this.state.voteOver = true;
-        this.handleChange = value => event => {
-          this.setState({
-            [value]: event.target.value,
-          });
-          params.name = event.target.value;
-        };
-    }
+  constructor(props) {
+      super(props);
+      this.state = props.location;
+      this.state.pathname = "/CloseEyes";
+      this.state.voteOver = true;
+      this.handleChange = value => event => {
+        this.setState({
+          [value]: event.target.value,
+        });
+        params.name = event.target.value;
+      };
+  }
+
+  killPlayer = () => {
+    const socket = socketIOClient(format("serverURL"));
+    socket.emit('kill player', this.state.value) 
+  }
 
   render() {
     const { classes } = this.props;
@@ -64,7 +70,8 @@ class MafiaVote extends Component {
             
             <VoteRadioGroup user={mocked.name} players={mocked.players} />
             <div className="centered-content">
-            <Button variant="contained" component={Link} to={this.state} className="confirm-button">Confirm</Button>
+            <Button variant="contained" component={Link} to={this.state} className="confirm-button" 
+            onClick={() => this.killPlayer()}>Confirm</Button>
           </div>
         </Header>
       </div>

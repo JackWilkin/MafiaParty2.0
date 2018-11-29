@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
 import icon from './images/eyesclosed.svg';
 
+import socketIOClient from "socket.io-client";
+
 // more components under component demos here
 // https://material-ui.com/
 
@@ -27,7 +29,8 @@ class CloseEyes extends Component {
   constructor(props) {
     super(props);
     this.state = props.location;
-    debugger;
+    this.killPlayer = this.killPlayer.bind(this);
+
     if (this.state.role === 'mafia' && !this.state.voteOver) {
       this.state.pathname = "/OpenEyesMafia"
     }
@@ -35,6 +38,24 @@ class CloseEyes extends Component {
       this.state.pathname = "/OpenEyes";
       this.state.voteOver = false;
     }
+  }
+
+  componentWillMount() {
+    const socket = socketIOClient(format("serverURL"));
+    socket.on('kill player', function(player){
+      this.killPlayer(player); 
+      }.bind(this)
+    );
+  }
+
+  killPlayer(player) {
+    var victim = this.state.players.find(p => p.title == player);
+    var index = this.state.players.indexOf(victim);
+
+    if(index > -1) {
+      this.state.players.splice(index, 1);
+    } 
+    this.setState(this.state);
   }
 
   render() {

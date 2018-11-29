@@ -34,6 +34,16 @@ io.on('connection', socket => {
     console.log('Game started with players:', playerlist)
     io.sockets.emit('start game', playerlist)
   })
+
+  socket.on('kill player', (player) => {
+    console.log('Player Killed: ', player)
+    io.sockets.emit('kill player', player)
+  })
+
+  socket.on('hang player', (player) => {
+    console.log('Town hung player: ', player)
+    io.sockets.emit('kill player', player)
+  })
   
   // disconnect is fired when a client leaves the server
   socket.on('disconnect', () => {

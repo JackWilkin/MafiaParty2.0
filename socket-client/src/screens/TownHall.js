@@ -16,6 +16,8 @@ import VoteRadioGroup from '../components/VoteRadioGroup';
 import mockedState from '../utils/mock';
 import icon from './images/townhall.svg';
 
+import socketIOClient from "socket.io-client";
+
 // more components under component demos here
 // https://material-ui.com/
 
@@ -49,6 +51,11 @@ class TownHall extends Component {
     };
   }
 
+  townHanging = () => {
+    const socket = socketIOClient(format("serverURL"));
+    socket.emit('hang player', this.state.value) 
+  }
+
   render() {
     const { classes } = this.props;
     let mocked = mockedState(this.state);
@@ -62,7 +69,8 @@ class TownHall extends Component {
           <h2 className="town-hall town-hall-title">Town Hall Ballot</h2>
           <VoteRadioGroup user={mocked.name} players={mocked.players} />
           <div className="centered-content">
-            <Button variant="contained" component={Link} to={this.state} className="confirm-button">Confirm</Button>
+            <Button variant="contained" component={Link} to={this.state} className="confirm-button"
+            onClick={() => this.townHanging()}>Confirm</Button>
           </div>
         </Header>
       </div>

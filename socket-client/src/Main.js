@@ -32,7 +32,8 @@ class Main extends Component {
       <MuiThemeProvider theme={theme}>
         <div>
             <Switch>
-              <Route exact path='/' component={TaskSelect} />
+              <Route exact path='/' component={Home} />
+              <Route exact path='/Task' component={TaskSelect} />
               <Route exact path='/Home' component={Home}/>
               <Route path='/CreateRoom' component={CreateRoom} />
               <Route path='/JoinRoom' component={JoinRoom} />

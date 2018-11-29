@@ -58,6 +58,10 @@ class ElectionResults extends Component {
     else {
       this.state.tally[player] = 1;
     }
+
+    if(this.state.frontRunner.name == this.state.name) {
+      this.setState({pathname: "/YouDied"});
+    }
     this.setState(this.state);
   }
 
@@ -80,7 +84,8 @@ class ElectionResults extends Component {
         <VoteBreakdown></VoteBreakdown>
         {this.state.voterTurnout == this.state.players.length &&
           <div className="centered-content">
-            <Button variant="contained" component={Link} to={this.state} className={classes.button}>
+            <Button variant="contained" component={Link} to={this.state} className={classes.button}
+            onClick={this.election()}>
               {format("global.next.txt")}
             </Button>
           </div>

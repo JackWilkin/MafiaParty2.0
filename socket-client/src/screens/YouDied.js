@@ -22,38 +22,26 @@ const styles = theme => ({
 });
 
 // template -- replace template with the component's name
-class BlankDied extends Component {
+class YouDied extends Component {
   constructor(props) {
     super(props);
     this.state = props.location;
-    this.state.pathname = "/TownHall";
-    if (this.state.victim == this.state.name) {
-      this.state.pathname = "/YouDied";
-    }
+    this.state.pathname = "/";
   }
 
   render() {
     const { classes } = this.props;
 
     return (
-      <Header title="Oh no!">
-        <p>A tragedy has happened....</p>
-
-        <p>{format("lorem")}</p>
-        <p>{this.state.victim} Has Died!!!!</p>
-        
-        <div className="centered-content">
-          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-            {format("global.next.txt")}
-          </Button>
-        </div>
+      <Header title="You Died">
+        <p>bummer</p>
       </Header>
 
     );
   }
 }
-BlankDied.propTypes = {
+YouDied.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BlankDied);
+export default withStyles(styles)(YouDied);

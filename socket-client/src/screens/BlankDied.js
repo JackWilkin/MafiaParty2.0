@@ -21,8 +21,6 @@ const styles = theme => ({
   },
 });
 
-const mockedDeadPerson = 'Chloe';
-
 // template -- replace template with the component's name
 class BlankDied extends Component {
   constructor(props) {

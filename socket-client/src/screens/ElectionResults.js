@@ -31,7 +31,6 @@ class ElectionResults extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/CloseEyes";
-    this.state.frontRunner = {name: '', votes: 0};
     this.hangPlayer = this.hangPlayer.bind(this);
   }
 
@@ -44,6 +43,7 @@ class ElectionResults extends Component {
   }
 
   hangPlayer(player) {
+    this.setState({voterTurnout: this.state.voterTurnout + 1});
     if (this.state.frontRunner.name == '') {
       this.setState({frontRunner: {name: player, votes: 1}});
     }
@@ -62,7 +62,8 @@ class ElectionResults extends Component {
   }
 
   election = () => {
-    
+    const socket = socketIOClient(format("serverURL"));
+    socket.emit('kill player', this.state.frontRunner.name); 
   }
 
   render() {
@@ -71,17 +72,19 @@ class ElectionResults extends Component {
     return (
       <Header title="Oh no!">
         <p>The Town has decided....</p>
-        <p>{this.state.tally['jack']}</p>
-        {/* <p>{format("lorem")}</p> */}
+        <p>{this.state.voterTurnout}</p>
+        {this.state.voterTurnout == this.state.players.length &&
         <p>{this.state.frontRunner.name} Has Died!!!!</p>
+        }
 
         <VoteBreakdown></VoteBreakdown>
-        
-        <div className="centered-content">
-          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-            {format("global.next.txt")}
-          </Button>
-        </div>
+        {this.state.voterTurnout == this.state.players.length &&
+          <div className="centered-content">
+            <Button variant="contained" component={Link} to={this.state} className={classes.button}>
+              {format("global.next.txt")}
+            </Button>
+          </div>
+        }
       </Header>
 
     );

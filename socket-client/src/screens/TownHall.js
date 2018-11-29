@@ -44,6 +44,9 @@ class TownHall extends Component {
     this.state = props.location;
     this.state.pathname = "/ElectionResults";
     this.state.tally = {};
+    this.state.frontRunner = {name: '', votes: 0};
+    this.state.voterTurnout = 0;
+
     this.hangPlayer = this.hangPlayer.bind(this);
     this.handleChange = value => event => {
       this.setState({
@@ -53,15 +56,18 @@ class TownHall extends Component {
     };
   }
 
+  //sets the victim of the state based on the radio buttons
   setVictim = (player) => {
     this.setState({victim: player});
   }
 
+  //Emits town hanging event to server
   townHanging = () => {
     const socket = socketIOClient(format("serverURL"));
     socket.emit('hang player', this.state.victim) 
   }
 
+  //Sockets are set here
   componentWillMount() {
     const socket = socketIOClient(format("serverURL"));
     socket.on('hang player', function(player){
@@ -70,18 +76,36 @@ class TownHall extends Component {
     );
   }
 
+  //Used to prevent component memory leak
   componentWillUnmount() {
     this.isCancelled = true;
   }
 
   hangPlayer(player) {
     if (!this.isCancelled) {
+      //keep track of how many people have voted so we know if everyone has voted
+      this.setState({voterTurnout: this.state.voterTurnout + 1});
+
+      //If there is no frontrunner this is the first ballot. player becomes frontrunner. 
+      if (this.state.frontRunner.name == '') {
+        this.setState({frontRunner: {name: player, votes: 1}});
+      }
+
+      //If player already has votes add 1 more. 
       if(player in this.state.tally) {
         this.state.tally[player] = this.state.tally[player] + 1;
+
+        //Check if player is now frontrunner
+        if(this.state.tally[player] > this.state.frontRunner.votes) {
+          this.setState({frontRunner: {name: player, votes: this.state.tally[player]}});
+        }
       }
       else {
+        //If player has no votes either became first frontrunner so just add player to tally
         this.state.tally[player] = 1;
       }
+
+      //refresh the views
       this.setState(this.state);
     }
   }

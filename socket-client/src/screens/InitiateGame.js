@@ -26,7 +26,7 @@ const styles = theme => ({
 class InitiateGame extends Component {
     constructor(props) {
       super(props);
-      debugger;
+
       this.state = props.location;
       this.state.pathname = "/CloseEyes";
     }

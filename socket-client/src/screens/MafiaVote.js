@@ -52,7 +52,11 @@ class MafiaVote extends Component {
 
   killPlayer = () => {
     const socket = socketIOClient(format("serverURL"));
-    socket.emit('kill player', this.state.value) 
+    socket.emit('kill player', this.state.victim); 
+  }
+
+  setVictim = (player) => {
+    this.setState({victim: player});
   }
 
   render() {
@@ -68,7 +72,7 @@ class MafiaVote extends Component {
             </p>
             <h2 className="mafia-vote">Choose your victim:</h2>
             
-            <VoteRadioGroup user={mocked.name} players={mocked.players} />
+            <VoteRadioGroup user={mocked.name} players={mocked.players} setVictim={this.setVictim.bind(this)}/>
             <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className="confirm-button" 
             onClick={() => this.killPlayer()}>Confirm</Button>

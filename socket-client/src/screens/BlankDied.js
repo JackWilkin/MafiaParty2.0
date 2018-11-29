@@ -39,7 +39,7 @@ class BlankDied extends Component {
         <p>A tragedy has happened....</p>
 
         <p>{format("lorem")}</p>
-        <p>{mockedDeadPerson} Has Died!!!!</p>
+        <p>{this.state.victim} Has Died!!!!</p>
         
         <div className="centered-content">
           <Button variant="contained" component={Link} to={this.state} className={classes.button}>

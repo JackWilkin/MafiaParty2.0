@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 // uncomment if you need these material components
 import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
+import socketIOClient from "socket.io-client";
 
 // more components under component demos here
 // https://material-ui.com/
@@ -29,6 +30,33 @@ class ElectionResults extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/CloseEyes";
+    this.state.tally = {};
+    this.hangPlayer = this.hangPlayer.bind(this);
+  }
+
+  componentWillMount() {
+    const socket = socketIOClient(format("serverURL"));
+    socket.on('hang player', function(player){
+      this.hangPlayer(player); 
+      }.bind(this)
+    );
+  }
+
+  hangPlayer(player) {
+    if(player in this.state.tally) {
+      this.state.tally[player] = this.state.tally[player] + 1;
+    }
+    else {
+      this.state.tally[player] = 1;
+    }
+    
+    var victim = this.state.players.find(p => p.name == player);
+    var index = this.state.players.indexOf(victim);
+
+    if(index > -1) {
+      this.state.players.splice(index, 1);
+    } 
+    this.setState(this.state);
   }
 
   render() {

@@ -23,12 +23,13 @@ class VoteRadioGroup extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state ={};
     this.state.value = '';
   }
 
   handleChange = event => {
     this.setState({ value: event.target.value });
+    this.props.setVictim(event.target.value);
   };
 
 

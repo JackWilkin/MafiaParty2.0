@@ -15,6 +15,8 @@ import icon from './images/eyesclosed.svg';
 
 import socketIOClient from "socket.io-client";
 
+import { Redirect } from 'react-router-dom';
+
 // more components under component demos here
 // https://material-ui.com/
 
@@ -49,27 +51,32 @@ class CloseEyes extends Component {
   }
 
   killPlayer(player) {
-    var victim = this.state.players.find(p => p.title == player);
+    this.setState({victim: player}); 
+    var victim = this.state.players.find(p => p.name == player);
     var index = this.state.players.indexOf(victim);
 
     if(index > -1) {
       this.state.players.splice(index, 1);
-    } 
+    }
+    this.Redirect = true;
     this.setState(this.state);
   }
 
   render() {
     const { classes } = this.props;
-
+    if (this.Redirect) {
+      return <Redirect to={this.state} />
+    }
     return (
       <Header title="Close Your Eyes">
       <img className="icon" src={icon} alt="mafia"/>
         <p>It is night, time to go to sleep</p>
-        <div className="centered-content">
+        {this.state.role == 'mafia' &&
+        <div className="centered-content">    
         <Button variant="contained" component={Link} to={this.state} className={classes.button}>
           {format("global.next.txt")}
         </Button>
-        </div>
+        </div>}
       </Header>
     );
   }

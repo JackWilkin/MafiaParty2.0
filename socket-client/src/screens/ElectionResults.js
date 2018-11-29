@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
 import socketIOClient from "socket.io-client";
+import VoteBreakdown from './VoteBreakdown';
 
 // more components under component demos here
 // https://material-ui.com/
@@ -68,6 +69,8 @@ class ElectionResults extends Component {
 
         <p>{format("lorem")}</p>
         <p>{mockedDeadPerson} Has Died!!!!</p>
+
+        <VoteBreakdown></VoteBreakdown>
         
         <div className="centered-content">
           <Button variant="contained" component={Link} to={this.state} className={classes.button}>

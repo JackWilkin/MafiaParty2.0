@@ -31,7 +31,7 @@ class ElectionResults extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/CloseEyes";
-    this.state.tally = {};
+    this.state.frontRunner = {name: '', votes: 0};
     this.hangPlayer = this.hangPlayer.bind(this);
   }
 
@@ -44,20 +44,25 @@ class ElectionResults extends Component {
   }
 
   hangPlayer(player) {
+    if (this.state.frontRunner.name == '') {
+      this.setState({frontRunner: {name: player, votes: 1}});
+    }
+
     if(player in this.state.tally) {
       this.state.tally[player] = this.state.tally[player] + 1;
+
+      if(this.state.tally[player] > this.state.frontRunner.votes) {
+        this.setState({frontRunner: {name: player, votes: this.state.tally[player]}});
+      }
     }
     else {
       this.state.tally[player] = 1;
     }
-    
-    var victim = this.state.players.find(p => p.name == player);
-    var index = this.state.players.indexOf(victim);
-
-    if(index > -1) {
-      this.state.players.splice(index, 1);
-    } 
     this.setState(this.state);
+  }
+
+  election = () => {
+    
   }
 
   render() {
@@ -66,9 +71,9 @@ class ElectionResults extends Component {
     return (
       <Header title="Oh no!">
         <p>The Town has decided....</p>
-
-        <p>{format("lorem")}</p>
-        <p>{mockedDeadPerson} Has Died!!!!</p>
+        <p>{this.state.tally['jack']}</p>
+        {/* <p>{format("lorem")}</p> */}
+        <p>{this.state.frontRunner.name} Has Died!!!!</p>
 
         <VoteBreakdown></VoteBreakdown>
         

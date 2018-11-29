@@ -43,6 +43,8 @@ class TownHall extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/ElectionResults";
+    this.state.tally = {};
+    this.hangPlayer = this.hangPlayer.bind(this);
     this.handleChange = value => event => {
       this.setState({
         [value]: event.target.value,
@@ -57,7 +59,31 @@ class TownHall extends Component {
 
   townHanging = () => {
     const socket = socketIOClient(format("serverURL"));
-    socket.emit('hang player', this.state.value) 
+    socket.emit('hang player', this.state.victim) 
+  }
+
+  componentWillMount() {
+    const socket = socketIOClient(format("serverURL"));
+    socket.on('hang player', function(player){
+      this.hangPlayer(player); 
+      }.bind(this)
+    );
+  }
+
+  componentWillUnmount() {
+    this.isCancelled = true;
+  }
+
+  hangPlayer(player) {
+    if (!this.isCancelled) {
+      if(player in this.state.tally) {
+        this.state.tally[player] = this.state.tally[player] + 1;
+      }
+      else {
+        this.state.tally[player] = 1;
+      }
+      this.setState(this.state);
+    }
   }
 
   render() {

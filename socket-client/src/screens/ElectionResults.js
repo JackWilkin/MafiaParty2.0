@@ -79,8 +79,26 @@ class ElectionResults extends Component {
   }
 
   election = () => {
-    const socket = socketIOClient(format("serverURL"));
-    socket.emit('execute player', this.state.frontRunner.name); 
+    if(!this.isGameOver()) {
+      const socket = socketIOClient(format("serverURL"));
+      socket.emit('execute player', this.state.frontRunner.name);
+    } 
+  }
+
+  isGameOver = () => {
+    var mafia = this.state.players.find(p => p.role == 'mafia').name;
+
+    if(this.state.frontRunner.name == mafia) {
+      this.state.pathname = "/GameOver";
+      this.state.winner = 'villager';
+      return true;
+    }
+    else if(this.state.players.length <= 4){
+      this.state.pathname = "/GameOver";
+      this.state.winner = 'mafia';
+      return true;
+    }
+    return false;
   }
 
   render() {

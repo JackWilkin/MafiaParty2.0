@@ -20,6 +20,7 @@ import MafiaRole from './screens/MafiaRole';
 import VillagerRole from './screens/VillagerRole';
 import ElectionResults from './screens/ElectionResults';
 import YouDied from './screens/YouDied';
+import GameOver from './screens/GameOver';
 
 const theme = createMuiTheme({
   palette: {
@@ -52,6 +53,7 @@ class Main extends Component {
               <Route path="/VillagerRole" component={VillagerRole} />
               <Route path="/ElectionResults" component={ElectionResults} />
               <Route path="/YouDied" component={YouDied} />
+              <Route path="/GameOver" component={GameOver} />
             </Switch>
         </div>
       </MuiThemeProvider>

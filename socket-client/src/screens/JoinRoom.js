@@ -43,6 +43,9 @@ class JoinRoom extends Component {
       this.state = props.location;
       this.state.pathname = "/WaitingRoom";
       this.state.owner = false;
+
+      this.addPlayer = this.addPlayer.bind(this);
+
       this.handleChange = name => event => {
         this.setState({
           [name]: event.target.value,
@@ -53,6 +56,33 @@ class JoinRoom extends Component {
         }
       };
   }
+
+  addPlayer(player) {
+    if (!this.isCancelled) {
+        this.state.players.push(
+            {
+            name: player,
+            living: true,
+            role: 'villager'
+            }
+            );
+        this.setState(this.state);
+    }
+  }
+
+  componentDidMount() {
+      const socket = socketIOClient(format("serverURL"));
+      socket.on('add player', function(player){
+          this.addPlayer(player);
+          console.log(player); 
+          }.bind(this)
+      );
+  }
+
+  componentWillUnmount() {
+      this.isCancelled = true;
+  }
+  
   // sending sockets -> add new player to game
   send = () => {
     const socket = socketIOClient(format("serverURL"));

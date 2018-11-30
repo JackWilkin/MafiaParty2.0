@@ -38,18 +38,18 @@ class Home extends Component {
                 );
             this.setState(this.state);
         }
-      }
+    }
     
-      componentDidMount() {
+    componentDidMount() {
         const socket = socketIOClient(format("serverURL"));
         socket.on('add player', function(player){
-          this.addPlayer(player);
-          console.log(player); 
-          }.bind(this)
+            this.addPlayer(player);
+            console.log(player); 
+            }.bind(this)
         );
-      }
+    }
 
-      componentWillUnmount() {
+    componentWillUnmount() {
         this.isCancelled = true;
     }
 

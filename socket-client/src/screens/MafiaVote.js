@@ -42,7 +42,7 @@ class MafiaVote extends Component {
       this.state = props.location;
       this.state.pathname = "/CloseEyes";
       this.state.voteOver = true;
-      this.state.redirect = true;
+      this.state.Redirect = false;
       this.handleChange = value => event => {
         this.setState({
           [value]: event.target.value,

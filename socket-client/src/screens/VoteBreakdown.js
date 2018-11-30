@@ -28,7 +28,7 @@ class VoteBreakdown extends Component {
 
     // this currently assumes a player is { name, list of player names that voted against them}
     // but it should be easy to change this than it is to pass in something that fits that
-    let players = []; 
+    let players = [];//[{name: 'Jack'}, {name: 'Chloe'}, {name: 'zack'}]; 
 
     for (var i = 0; i < players.length; i++) {
       let votes = "";

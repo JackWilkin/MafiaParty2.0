@@ -15,7 +15,7 @@ import './styles.css'
 import mockedState from '../utils/mock';
 import format from '../utils/strings/strings';
 import socketIOClient from "socket.io-client";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   button: {

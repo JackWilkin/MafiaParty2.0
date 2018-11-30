@@ -27,6 +27,7 @@ class OpenEyes extends Component {
       super(props);
       this.state = props.location;
       this.state.pathname = "/BlankDied";
+      this.state.Redirect = false;
     }
 
   render() {

@@ -31,6 +31,7 @@ class ElectionResults extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/CloseEyes";
+    this.state.fromElection = true;
     this.hangPlayer = this.hangPlayer.bind(this);
   }
 
@@ -78,9 +79,8 @@ class ElectionResults extends Component {
   }
 
   election = () => {
-    debugger;
     const socket = socketIOClient(format("serverURL"));
-    socket.emit('kill player', this.state.frontRunner.name); 
+    socket.emit('execute player', this.state.frontRunner.name); 
   }
 
   render() {
@@ -89,7 +89,6 @@ class ElectionResults extends Component {
     return (
       <Header title="Oh no!">
         <p>The Town has decided....</p>
-        <p>{this.state.voterTurnout}</p>
         {this.state.voterTurnout == this.state.players.length &&
         <p>{this.state.frontRunner.name} Has Died!!!!</p>
         }

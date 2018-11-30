@@ -41,8 +41,13 @@ io.on('connection', socket => {
   })
 
   socket.on('hang player', (player) => {
-    console.log('Town hung player: ', player)
+    console.log('Voted to hang player: ', player)
     io.sockets.emit('hang player', player)
+  })
+
+  socket.on('execute player', (player) => {
+    console.log('Town executed player: ', player)
+    io.sockets.emit('execute player', player)
   })
   
   // disconnect is fired when a client leaves the server

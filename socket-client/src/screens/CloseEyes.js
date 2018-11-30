@@ -32,6 +32,7 @@ class CloseEyes extends Component {
     super(props);
     this.state = props.location;
     this.killPlayer = this.killPlayer.bind(this);
+    this.playerKilled = false;
 
     if (this.state.role === 'mafia' && !this.state.voteOver) {
       this.state.pathname = "/OpenEyesMafia"
@@ -48,6 +49,10 @@ class CloseEyes extends Component {
       this.killPlayer(player); 
       }.bind(this)
     );
+    socket.on('execute player', function(player){
+      this.executePlayer(player); 
+      }.bind(this)
+    );
   }
 
   killPlayer(player) {
@@ -58,18 +63,31 @@ class CloseEyes extends Component {
     if(index > -1) {
       this.state.players.splice(index, 1);
     }
-    this.Redirect = true;
-    this.setState(this.state);
+
+    setTimeout(() => {
+      this.setState({Redirect: true}); 
+      this.setState(this.state);
+    }, 2000);
+  }
+
+  executePlayer(player) {
+    this.setState({victim: player}); 
+    var victim = this.state.players.find(p => p.name == player);
+    var index = this.state.players.indexOf(victim);
+
+    if(index > -1) {
+      this.state.players.splice(index, 1);
+    }
   }
 
   render() {
     const { classes } = this.props;
-    if (this.Redirect) {
+    if (this.state.Redirect) {
       return <Redirect to={this.state} />
     }
     return (
       <Header title="Close Your Eyes">
-      <img className="icon" src={icon} alt="mafia"/>
+      <img className="icon" src={icon} alt="eyes"/>
         <p>It is night, time to go to sleep</p>
         {this.state.role == 'mafia' &&
         <div className="centered-content">    

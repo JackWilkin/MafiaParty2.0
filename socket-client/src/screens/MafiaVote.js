@@ -42,6 +42,7 @@ class MafiaVote extends Component {
       this.state = props.location;
       this.state.pathname = "/CloseEyes";
       this.state.voteOver = true;
+      this.state.redirect = true;
       this.handleChange = value => event => {
         this.setState({
           [value]: event.target.value,
@@ -61,7 +62,13 @@ class MafiaVote extends Component {
 
   render() {
     const { classes } = this.props;
-    let mocked = mockedState(this.props.location);
+    let victims = mockedState(this.props.location).players.slice();
+    var victim = victims.find(p => p.name == this.state.name);
+    var index = victims.indexOf(victim);
+
+    if(index > -1) {
+      victims.splice(index, 1);
+    }
     
     return (
       <div className="mafia-vote">
@@ -72,7 +79,7 @@ class MafiaVote extends Component {
             </p>
             <h2 className="mafia-vote">Choose your victim:</h2>
             
-            <VoteRadioGroup user={mocked.name} players={mocked.players} setVictim={this.setVictim.bind(this)}/>
+            <VoteRadioGroup user={this.state.name} players={victims} setVictim={this.setVictim.bind(this)}/>
             <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className="confirm-button" 
             onClick={() => this.killPlayer()}>Confirm</Button>

@@ -90,7 +90,7 @@ class ElectionResults extends Component {
 
     if(this.state.frontRunner.name == mafia) {
       this.state.pathname = "/GameOver";
-      this.state.winner = 'villager';
+      this.state.winner = 'villagers';
       return true;
     }
     else if(this.state.players.length <= 4){

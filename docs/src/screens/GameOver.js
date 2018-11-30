@@ -34,7 +34,7 @@ class GameOver extends Component {
 
     return (
       <Header title="Game Over">
-        <p>The winner is: {this.state.winner}</p>
+        <p>The winner is the {this.state.winner}</p>
       </Header>
 
     );

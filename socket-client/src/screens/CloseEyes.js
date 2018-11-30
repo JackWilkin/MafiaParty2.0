@@ -32,15 +32,22 @@ class CloseEyes extends Component {
     super(props);
     this.state = props.location;
     this.killPlayer = this.killPlayer.bind(this);
-    this.playerKilled = false;
 
     if (this.state.role === 'mafia' && !this.state.voteOver) {
-      this.state.pathname = "/OpenEyesMafia"
+      this.state.pathname = "/OpenEyesMafia";
+      this.mafiaWakeup();
     }
     else {
       this.state.pathname = "/OpenEyes";
       this.state.voteOver = false;
     }
+  }
+
+  mafiaWakeup() {
+    setTimeout(() => {
+      this.setState({Redirect: true}); 
+      this.setState(this.state);
+    }, 5000);
   }
 
   componentWillMount() {
@@ -89,12 +96,6 @@ class CloseEyes extends Component {
       <Header title="Close Your Eyes">
       <img className="icon" src={icon} alt="eyes"/>
         <p>It is night, time to go to sleep</p>
-        {this.state.role == 'mafia' &&
-        <div className="centered-content">    
-        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-          {format("global.next.txt")}
-        </Button>
-        </div>}
       </Header>
     );
   }

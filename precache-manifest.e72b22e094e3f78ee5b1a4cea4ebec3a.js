@@ -20,19 +20,19 @@ self.__precacheManifest = [
     "url": "/MafiaParty2.0/static/js/runtime~main.3c9fcbf5.js"
   },
   {
-    "revision": "740b85b588d85cd436f5",
-    "url": "/MafiaParty2.0/static/js/main.740b85b5.chunk.js"
+    "revision": "b9acd5b3584da568fa41",
+    "url": "/MafiaParty2.0/static/js/main.b9acd5b3.chunk.js"
   },
   {
     "revision": "101bd0e3fe25ff1a58ed",
     "url": "/MafiaParty2.0/static/js/1.101bd0e3.chunk.js"
   },
   {
-    "revision": "740b85b588d85cd436f5",
+    "revision": "b9acd5b3584da568fa41",
     "url": "/MafiaParty2.0/static/css/main.27281a0f.chunk.css"
   },
   {
-    "revision": "7d3f7299dcaa79d46b162b92e66fd314",
+    "revision": "45b98731857e0ab7478c01f4dfbef1db",
     "url": "/MafiaParty2.0/index.html"
   }
 ];

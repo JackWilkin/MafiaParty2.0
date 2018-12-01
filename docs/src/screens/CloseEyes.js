@@ -6,10 +6,8 @@ import format from '../utils/strings/strings';
 // uncomment if you're including the button/textfield/etc components
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom'
 
 // uncomment if you need these material components
-import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
 import icon from './images/eyesclosed.svg';
 
@@ -64,7 +62,7 @@ class CloseEyes extends Component {
 
   killPlayer(player) {
     this.setState({victim: player}); 
-    var victim = this.state.players.find(p => p.name == player);
+    var victim = this.state.players.find(p => p.name === player);
     var index = this.state.players.indexOf(victim);
 
     if(index > -1) {
@@ -79,7 +77,7 @@ class CloseEyes extends Component {
 
   executePlayer(player) {
     this.setState({victim: player}); 
-    var victim = this.state.players.find(p => p.name == player);
+    var victim = this.state.players.find(p => p.name === player);
     var index = this.state.players.indexOf(victim);
 
     if(index > -1) {
@@ -88,7 +86,7 @@ class CloseEyes extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     if (this.state.Redirect) {
       return <Redirect to={this.state} />
     }

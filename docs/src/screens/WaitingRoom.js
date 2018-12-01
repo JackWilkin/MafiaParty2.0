@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import StarIcon from '@material-ui/icons/Star';
@@ -52,7 +51,7 @@ class WaitingRoom extends Component {
     this.setState({players: playerList});
     this.setState({pathname: "/VillagerRole"});
     for (var i = 0; i < this.state.players.length; i++) {
-      if(this.state.players[i].name == this.state.name && this.state.players[i].role == 'mafia') {
+      if(this.state.players[i].name === this.state.name && this.state.players[i].role === 'mafia') {
         this.setState({role: 'mafia'});
         this.setState({pathname: "/MafiaRole"});
       }
@@ -95,7 +94,7 @@ class WaitingRoom extends Component {
       //Add star icon in front of player name
       playerList.push(
       <ListItem>
-        {mocked.name == p.name &&  <ListItemIcon><StarIcon /></ListItemIcon>}
+        {mocked.name === p.name &&  <ListItemIcon><StarIcon /></ListItemIcon>}
         <ListItemText>{p.name}</ListItemText>
       </ListItem>);
     }

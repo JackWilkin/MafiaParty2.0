@@ -23,8 +23,6 @@ const styles = theme => ({
   },
 });
 
-const mockedDeadPerson = 'Chloe';
-
 // template -- replace template with the component's name
 class ElectionResults extends Component {
   constructor(props) {
@@ -48,7 +46,7 @@ class ElectionResults extends Component {
     this.setState({voterTurnout: this.state.voterTurnout + 1});
 
     //If there is no frontrunner this is the first ballot. player becomes frontrunner. 
-    if (this.state.frontRunner.name == '') {
+    if (this.state.frontRunner.name === '') {
       this.setState({frontRunner: {name: player, votes: 1}});
     }
 
@@ -67,7 +65,7 @@ class ElectionResults extends Component {
     }
 
     //If they died dont move on
-    if(this.state.frontRunner.name == this.state.name) {
+    if(this.state.frontRunner.name === this.state.name) {
       this.setState({pathname: "/YouDied"});
     }
     else {
@@ -82,20 +80,24 @@ class ElectionResults extends Component {
     if(!this.isGameOver()) {
       const socket = socketIOClient(format("serverURL"));
       socket.emit('execute player', this.state.frontRunner.name);
+    }
+    else {
+      const socket = socketIOClient(format("serverURL"));
+      socket.emit('end game', this.state.winner);
     } 
   }
 
   isGameOver = () => {
-    var mafia = this.state.players.find(p => p.role == 'mafia').name;
+    var mafia = this.state.players.find(p => p.role === 'mafia').name;
 
-    if(this.state.frontRunner.name == mafia) {
-      this.state.pathname = "/GameOver";
-      this.state.winner = 'villagers';
+    if(this.state.frontRunner.name === mafia) {
+      this.setState({pathname: "/GameOver"});
+      this.state({winner: 'villagers'});
       return true;
     }
     else if(this.state.players.length <= 4){
-      this.state.pathname = "/GameOver";
-      this.state.winner = 'mafia';
+      this.setState({pathname: "/GameOver"});
+      this.state({winner: 'mafia'});
       return true;
     }
     return false;
@@ -107,12 +109,12 @@ class ElectionResults extends Component {
     return (
       <Header title="Oh no!">
         <p>The Town has decided....</p>
-        {this.state.voterTurnout == this.state.players.length &&
+        {this.state.voterTurnout === this.state.players.length &&
         <p>{this.state.frontRunner.name} Has Died!!!!</p>
         }
 
         <VoteBreakdown></VoteBreakdown>
-        {this.state.voterTurnout == this.state.players.length &&
+        {this.state.voterTurnout === this.state.players.length &&
           <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className={classes.button}
             onClick={() => this.election()}>

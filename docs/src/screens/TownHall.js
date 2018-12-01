@@ -101,7 +101,7 @@ class TownHall extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     let mocked = mockedState(this.state);
     
     return (

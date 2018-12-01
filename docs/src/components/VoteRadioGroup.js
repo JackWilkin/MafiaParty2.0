@@ -39,7 +39,7 @@ class VoteRadioGroup extends Component {
     var choices = [];
     for (var i = 0; i < this.props.players.length; i++) {
       let p = this.props.players[i];
-      if (p.living && p.name != this.props.user.name) {
+      if (p.living && p.name !== this.props.user.name) {
         choices.push(<FormControlLabel value={p.name} control={<Radio />} label={p.name} />);
       }
     }

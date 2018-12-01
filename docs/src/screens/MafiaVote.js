@@ -61,9 +61,9 @@ class MafiaVote extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     let victims = mockedState(this.props.location).players.slice();
-    var victim = victims.find(p => p.name == this.state.name);
+    var victim = victims.find(p => p.name === this.state.name);
     var index = victims.indexOf(victim);
 
     if(index > -1) {

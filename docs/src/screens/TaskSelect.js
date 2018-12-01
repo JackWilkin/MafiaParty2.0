@@ -60,10 +60,6 @@ const taskThree = {
 
 const testLink = '/SocketTest'; // Change this to the route you want to go to
 class TaskSelect extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
 

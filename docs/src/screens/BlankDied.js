@@ -27,7 +27,7 @@ class BlankDied extends Component {
     super(props);
     this.state = props.location;
     this.state.pathname = "/TownHall";
-    if (this.state.victim == this.state.name) {
+    if (this.state.victim === this.state.name) {
       this.state.pathname = "/YouDied";
     }
   }

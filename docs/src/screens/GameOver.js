@@ -1,16 +1,17 @@
 
 // these are required imports
 import React, { Component } from 'react';
-import format from '../utils/strings/strings';
+// import format from '../utils/strings/strings';
 
 // uncomment if you're including the button/textfield/etc components
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 // uncomment if you need these material components
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
+
 
 // more components under component demos here
 // https://material-ui.com/
@@ -30,7 +31,7 @@ class GameOver extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
 
     return (
       <Header title="Game Over">

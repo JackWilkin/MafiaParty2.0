@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom';
@@ -39,6 +38,7 @@ class CreateRoom extends Component {
   constructor(props) {
     super(props);
     this.state = props.location;
+    this.state.game= '001';
     this.state.pathname = "/WaitingRoom";
 
     this.addPlayer = this.addPlayer.bind(this);
@@ -111,7 +111,8 @@ class CreateRoom extends Component {
               variant="outlined"
             />
           </form>
-          <Button variant="contained" component={Link} to={this.state} className={classes.button} onClick={() => this.send()}>
+          <Button variant="contained" component={Link} to={this.state} className={classes.button} 
+          onClick={() => this.send()} disabled={!this.state.name}>
             {format("createRoom.create.txt")}
           </Button>
         </div>

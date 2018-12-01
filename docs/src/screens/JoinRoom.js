@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Button  from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Link } from 'react-router-dom'
@@ -115,7 +114,8 @@ render() {
                   variant="outlined"
                   />
           </form>
-          <Button variant="contained" component={Link} to={this.state} className={classes.button} onClick={() => this.send()}>
+          <Button variant="contained" component={Link} to={this.state} className={classes.button} 
+          onClick={() => this.send()} disabled={!(this.state.name && this.state.game)}>
              {format("joinRoom.join.txt")}
           </Button>
       </div>

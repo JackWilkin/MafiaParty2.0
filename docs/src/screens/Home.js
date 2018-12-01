@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom'
@@ -24,7 +23,7 @@ class Home extends Component {
     constructor(){
         super();
         this.addPlayer = this.addPlayer.bind(this);
-        this.state = { pathname: "", name: '', owner: true, game: '0000', role: '', players: []};
+        this.state = { pathname: "", name: '', owner: true, role: '', players: [], game: ''};
     }
 
     addPlayer(player) {

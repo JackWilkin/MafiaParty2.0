@@ -15,7 +15,6 @@ import OpenEyes from './screens/OpenEyes';
 import OpenEyesMafia from './screens/OpenEyesMafia';
 import BlankDied from './screens/BlankDied';
 import MafiaVote from './screens/MafiaVote';
-import App from './App';
 import MafiaRole from './screens/MafiaRole';
 import VillagerRole from './screens/VillagerRole';
 import ElectionResults from './screens/ElectionResults';
@@ -48,7 +47,6 @@ class Main extends Component {
               <Route path="/OpenEyesMafia" component={OpenEyesMafia} />
               <Route path="/BlankDied" component={BlankDied} />
               <Route path="/MafiaVote" component={MafiaVote} />
-              <Route path="/SocketTest" component={App} />
               <Route path="/MafiaRole" component={MafiaRole} />
               <Route path="/VillagerRole" component={VillagerRole} />
               <Route path="/ElectionResults" component={ElectionResults} />

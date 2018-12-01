@@ -1,7 +1,7 @@
 {
   "main.css": "/MafiaParty2.0/static/css/main.27281a0f.chunk.css",
-  "main.js": "/MafiaParty2.0/static/js/main.2f769186.chunk.js",
-  "main.js.map": "/MafiaParty2.0/static/js/main.2f769186.chunk.js.map",
+  "main.js": "/MafiaParty2.0/static/js/main.67e9969d.chunk.js",
+  "main.js.map": "/MafiaParty2.0/static/js/main.67e9969d.chunk.js.map",
   "static/js/1.101bd0e3.chunk.js": "/MafiaParty2.0/static/js/1.101bd0e3.chunk.js",
   "static/js/1.101bd0e3.chunk.js.map": "/MafiaParty2.0/static/js/1.101bd0e3.chunk.js.map",
   "runtime~main.js": "/MafiaParty2.0/static/js/runtime~main.3c9fcbf5.js",
@@ -12,6 +12,6 @@
   "static/media/eyesclosed.svg": "/MafiaParty2.0/static/media/eyesclosed.d373bc79.svg",
   "static/css/main.27281a0f.chunk.css.map": "/MafiaParty2.0/static/css/main.27281a0f.chunk.css.map",
   "index.html": "/MafiaParty2.0/index.html",
-  "precache-manifest.ddb4e13be6c638ef4afbd6ca8e8762c1.js": "/MafiaParty2.0/precache-manifest.ddb4e13be6c638ef4afbd6ca8e8762c1.js",
+  "precache-manifest.c3cb8ac778a2eb1753c6c5ee1583e2ad.js": "/MafiaParty2.0/precache-manifest.c3cb8ac778a2eb1753c6c5ee1583e2ad.js",
   "service-worker.js": "/MafiaParty2.0/service-worker.js"
 }

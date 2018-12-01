@@ -92,12 +92,12 @@ class ElectionResults extends Component {
 
     if(this.state.frontRunner.name === mafia) {
       this.setState({pathname: "/GameOver"});
-      this.state({winner: 'villagers'});
+      this.setState({winner: 'villagers'});
       return true;
     }
     else if(this.state.players.length <= 4){
       this.setState({pathname: "/GameOver"});
-      this.state({winner: 'mafia'});
+      this.setState({winner: 'mafia'});
       return true;
     }
     return false;

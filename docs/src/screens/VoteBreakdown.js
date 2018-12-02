@@ -18,33 +18,25 @@ const styles = theme => ({
 });
 
 class VoteBreakdown extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   render() {
-    // const { classes } = this.props;
     var list = [];
 
-    // this currently assumes a player is { name, list of player names that voted against them}
-    // but it should be easy to change this than it is to pass in something that fits that
-    let players = [];//[{name: 'Jack'}, {name: 'Chloe'}, {name: 'zack'}]; 
+    let votes = this.props.votes;
 
-    for (var i = 0; i < players.length; i++) {
-      let votes = "";
-      if (players[i].votes.length > 0) {
-        votes = ": " + players[i].votes.join(', ');
+    for (var player in votes) {
+      if (votes.hasOwnProperty(player)) {
+        list.push(
+          <ListItem>
+            <ListItemText>{player}: {votes[player]} vote{votes[player] > 1 ? "s" : ""}</ListItemText>
+          </ListItem>
+        )
       }
-      list.push(
-        <ListItem>
-          <ListItemText>{players[i].name + votes}</ListItemText>
-        </ListItem>
-      )
     }
     return (
-        <List className="vote-list">
-          {list}
-        </List>
+      <List className="vote-list">
+        {list}
+      </List>
     );
   }
 }

@@ -52,7 +52,10 @@ class ElectionResults extends Component {
 
     //If player already has votes add 1 more. 
     if(player in this.state.tally) {
-      this.state.tally[player] = this.state.tally[player] + 1;
+      let tally = {};
+      tally.assign(this.state.tally);
+      tally[player] += 1;
+      this.setState({tally: tally});
 
       //Check if player is now frontrunner
       if(this.state.tally[player] > this.state.frontRunner.votes) {
@@ -113,7 +116,7 @@ class ElectionResults extends Component {
         <p>{this.state.frontRunner.name} Has Died!!!!</p>
         }
 
-        <VoteBreakdown></VoteBreakdown>
+        <VoteBreakdown votes={this.state.tally}></VoteBreakdown>
         {this.state.voterTurnout === this.state.players.length &&
           <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className={classes.button}

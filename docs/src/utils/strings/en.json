@@ -31,6 +31,6 @@
   "global.next.txt": "Next",
   "global.ready.txt": "Ready",
   "blankDied.text": "During the night there was a terrible tragedy. An innocent member of the town has been murdered. It is unclear who could have done such a gruesome crime.",
-  "serverURL": "https://wilkin1.localhost.run",
+  "serverURL": "http://localhost:8080",
   "lorem" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a ex euismod elit volutpat ultrices nec ut dolor. Vestibulu mgravida viverra vulputate. Fusce pharetra mi non blandit aliquam. Morbi eget elementum mauris. Suspendisse eleifend, massa in aliquet ultricies, tortor ante consequat diam, eget dapibus odio urna eu eros. Ut quis nunc nec elit eleifend lacinia et eget nisi. Aliquam porttitor eu risus in malesuada. Aliquam erat volutpat. Aliquam enim neque, sodales at condimentum vitae, euismod a dui. Mauris pharetra massa massa, vel ornare felis vehicula et. Curabitur congue venenatis sem malesuada rhoncus. Nunc finibus iaculis felis, vitae vulputate ex ultricies et. Curabitur ut nibh feugiat, vehicula dui eu, pellentesque nulla. Nulla facilisi."
 }

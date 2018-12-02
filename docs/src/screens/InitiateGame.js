@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom'
 import Button  from '@material-ui/core/Button';
 import Header from '../components/Header';
 
+import icon from './images/village.svg';
+
 // more components under component demos here
 // https://material-ui.com/
 
@@ -37,6 +39,7 @@ class InitiateGame extends Component {
     return (
       <div className="initiate-game">
       <Header title={format('initiateGame.title.label')}>
+      <img className="icon" src={icon} alt="eyes"/>
       <p>{format('initiateGame.text')}</p>
       <div className="centered-content">
                 <Button className="ready-button"variant="contained" component={Link} to={this.state}>{format("global.ready.txt")}</Button>

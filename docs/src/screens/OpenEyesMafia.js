@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom'
 import Button  from '@material-ui/core/Button';
 import Header from '../components/Header';
 
+import icon from './images/alarm-clock.svg';
+
 // more components under component demos here
 // https://material-ui.com/
 
@@ -34,6 +36,7 @@ class OpenEyes extends Component {
     
     return (
       <Header title="Open Your Eyes">
+      <img className="icon" src={icon} alt="eyes"/>
         <p>Time to wake up</p>
         <Button variant="contained" component={Link} to={this.state} className={classes.button}>
           {format("global.next.txt")}

@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from '../components/Header';
 import socketIOClient from "socket.io-client";
 import { Redirect } from 'react-router-dom';
+import icon from './images/coffin.svg';
 
 // more components under component demos here
 // https://material-ui.com/
@@ -57,7 +58,7 @@ class YouDied extends Component {
     }
     return (
       <Header title="You Died">
-        <p>bummer</p>
+        <img className="icon" src={icon} alt="coffin"/>
       </Header>
 
     );

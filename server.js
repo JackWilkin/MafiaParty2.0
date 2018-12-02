@@ -41,6 +41,16 @@ io.on('connection', socket => {
     console.log('Town executed player: ', player)
     io.sockets.emit('execute player', player)
   })
+
+  socket.on('end game', (winner) => {
+    console.log('The winner of the game is the:', winner)
+    io.sockets.emit('end game', winner)
+  })
+
+  socket.on('mafia wakeup', () => {
+    console.log('Mafia Wakeup')
+    io.sockets.emit('mafia wakeup')
+  })
   
   // disconnect is fired when a client leaves the server
   socket.on('disconnect', () => {

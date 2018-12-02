@@ -16,6 +16,8 @@ import VoteRadioGroup from '../components/VoteRadioGroup';
 import mockedState from '../utils/mock';
 import socketIOClient from "socket.io-client";
 
+import icon from './images/gun.svg';
+
 // more components under component demos here
 // https://material-ui.com/
 
@@ -73,10 +75,7 @@ class MafiaVote extends Component {
     return (
       <div className="mafia-vote">
         <Header title={format('mafiaVote.title.label')}>
-            <h2 className="mafia-vote">Other Mafia</h2>
-            <p className="mafia-vote other-mafia">
-              David Sprauge
-            </p>
+          {/* <img className="icon" src={icon} alt="gun"/> */}
             <h2 className="mafia-vote">Choose your victim:</h2>
             
             <VoteRadioGroup user={this.state.name} players={victims} setVictim={this.setVictim.bind(this)}/>

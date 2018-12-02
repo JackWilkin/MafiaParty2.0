@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom'
 // uncomment if you need these material components
 import Button  from '@material-ui/core/Button';
 import Header from '../components/Header';
+import icon from './images/alarm-clock.svg';
+import Sound from 'react-sound';
+import soundfile from './sound/open-your-eyes.mp3';
 
 // more components under component demos here
 // https://material-ui.com/
@@ -35,10 +38,19 @@ class OpenEyes extends Component {
     
     return (
       <Header title="Open Your Eyes">
+        <img className="icon" src={icon} alt="eyes"/>
         <p>Time to wake up</p>
         <Button variant="contained" component={Link} to={this.state} className={classes.button}>
           {format("global.next.txt")}
         </Button>
+        <Sound
+          url={soundfile}
+          playStatus={Sound.status.PLAYING}
+          playFromPosition={20 /* in milliseconds */}
+          onLoading={this.handleSongLoading}
+          onPlaying={this.handleSongPlaying}
+          onFinishedPlaying={this.handleSongFinishedPlaying}
+        />
       </Header>
     );
   }

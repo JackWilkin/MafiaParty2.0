@@ -46,7 +46,7 @@ class ElectionResults extends Component {
     this.setState({voterTurnout: this.state.voterTurnout + 1});
 
     //If there is no frontrunner this is the first ballot. player becomes frontrunner. 
-    if (this.state.frontRunner.name === '') {
+    if (this.state.frontRunner.votes === 0) {
       this.setState({frontRunner: {name: player, votes: 1}});
     }
 
@@ -89,7 +89,7 @@ class ElectionResults extends Component {
 
   isGameOver = () => {
     var mafia = this.state.players.find(p => p.role === 'mafia').name;
-
+    debugger;
     if(this.state.frontRunner.name === mafia) {
       this.setState({pathname: "/GameOver"});
       this.setState({winner: 'villagers'});

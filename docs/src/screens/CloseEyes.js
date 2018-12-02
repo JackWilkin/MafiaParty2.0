@@ -9,11 +9,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 // uncomment if you need these material components
 import Header from '../components/Header';
-import icon from './images/eyesclosed.svg';
+import icon from './images/moon.svg';
 
 import socketIOClient from "socket.io-client";
 
 import { Redirect } from 'react-router-dom';
+
+import Sound from 'react-sound';
+import soundfile from './sound/mafia-open-eyes.mp3';
 
 // more components under component demos here
 // https://material-ui.com/
@@ -43,6 +46,8 @@ class CloseEyes extends Component {
 
   mafiaWakeup() {
     setTimeout(() => {
+      const socket = socketIOClient(format("serverURL"));
+      socket.emit('mafia wakeup'); 
       this.setState({Redirect: true}); 
       this.setState(this.state);
     }, 5000);
@@ -56,6 +61,10 @@ class CloseEyes extends Component {
     );
     socket.on('execute player', function(player){
       this.executePlayer(player); 
+      }.bind(this)
+    );
+    socket.on('mafia wakeup', function(){
+      this.setState({playsound: true}); 
       }.bind(this)
     );
   }
@@ -93,7 +102,17 @@ class CloseEyes extends Component {
     return (
       <Header title="Close Your Eyes">
       <img className="icon" src={icon} alt="eyes"/>
-        <p>It is night, time to go to sleep</p>
+        <p>It is now night, time to go to sleep</p>
+        {this.state.playsound &&
+        <Sound
+          url={soundfile}
+          playStatus={Sound.status.PLAYING}
+          playFromPosition={20 /* in milliseconds */}
+          onLoading={this.handleSongLoading}
+          onPlaying={this.handleSongPlaying}
+          onFinishedPlaying={this.handleSongFinishedPlaying}
+        />
+        }
       </Header>
     );
   }

@@ -27,16 +27,14 @@ class VoteBreakdown extends Component {
     for (var player in votes) {
       if (votes.hasOwnProperty(player)) {
         list.push(
-          <ListItem>
-            <ListItemText>{player}: {votes[player]} vote{votes[player] > 1 ? "s" : ""}</ListItemText>
-          </ListItem>
+            <p class="player">{player}: {votes[player]} vote{votes[player] > 1 ? "s" : ""}</p>
         )
       }
     }
     return (
-      <List className="vote-list">
+      <div className="vote-list">
         {list}
-      </List>
+      </div>
     );
   }
 }

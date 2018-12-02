@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/MafiaParty2.0/static/media/village.6f1767ef.svg"
   },
   {
-    "revision": "9584e06e3d8637a0bfc4",
+    "revision": "cdeefa03713ac2a5c193",
     "url": "/MafiaParty2.0/static/css/main.d1ed0998.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/MafiaParty2.0/static/media/townhall.16c2b1c8.svg"
   },
   {
-    "revision": "9584e06e3d8637a0bfc4",
-    "url": "/MafiaParty2.0/static/js/main.9584e06e.chunk.js"
+    "revision": "cdeefa03713ac2a5c193",
+    "url": "/MafiaParty2.0/static/js/main.cdeefa03.chunk.js"
   },
   {
     "revision": "5d00106309216903d3c17664c4c3e6f2",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/MafiaParty2.0/static/media/gun.6d578f8a.svg"
   },
   {
-    "revision": "9c50ecad69e0258e2f0ddb0a9785445f",
+    "revision": "7ee3a90c461972a3ee1bd782e59c98fd",
     "url": "/MafiaParty2.0/index.html"
   }
 ];

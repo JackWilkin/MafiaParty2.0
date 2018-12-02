@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/MafiaParty2.0/precache-manifest.da3908d371e538061d3fdaf97826c4cd.js"
+  "/MafiaParty2.0/precache-manifest.edeb3aa838a55cf121c1f2791318c122.js"
 );
 
 workbox.clientsClaim();

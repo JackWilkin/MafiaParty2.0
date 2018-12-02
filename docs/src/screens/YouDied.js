@@ -33,9 +33,9 @@ class YouDied extends Component {
     this.state.pathname = "/GameOver";
   }
 
-  endGame(player) {
+  endGame(win) {
     if (!this.isCancelled) {
-        this.setState({gameOver: true});
+        this.setState({gameOver: true, winner: win});
     }
   }
 

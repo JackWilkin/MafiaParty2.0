@@ -18,37 +18,37 @@ io.on('connection', socket => {
   console.log('New client connected')
 
   socket.on('add player', (player) => {
-    console.log('Player Added: ', player)
+    console.log('Player Added: ', player, new Date().toLocaleTimeString())
     io.sockets.emit('add player', player)
   })
 
   socket.on('start game', (playerlist) => {
-    console.log('Game started with players:', playerlist)
+    console.log('Game started with players:', playerlist, new Date().toLocaleTimeString())
     io.sockets.emit('start game', playerlist)
   })
 
   socket.on('kill player', (player) => {
-    console.log('Player Killed: ', player)
+    console.log('Player Killed: ', player, new Date().toLocaleTimeString())
     io.sockets.emit('kill player', player)
   })
 
   socket.on('hang player', (player) => {
-    console.log('Voted to hang player: ', player)
+    console.log('Voted to hang player: ', player, new Date().toLocaleTimeString())
     io.sockets.emit('hang player', player)
   })
 
   socket.on('execute player', (player) => {
-    console.log('Town executed player: ', player)
+    console.log('Town executed player: ', player, new Date().toLocaleTimeString())
     io.sockets.emit('execute player', player)
   })
 
   socket.on('end game', (winner) => {
-    console.log('The winner of the game is the:', winner)
+    console.log('The winner of the game is the:', winner, new Date().toLocaleTimeString())
     io.sockets.emit('end game', winner)
   })
 
   socket.on('mafia wakeup', () => {
-    console.log('Mafia Wakeup')
+    console.log('Mafia Wakeup', new Date().toLocaleTimeString())
     io.sockets.emit('mafia wakeup')
   })
   

@@ -33,6 +33,7 @@ class CloseEyes extends Component {
     super(props);
     this.state = props.location;
     this.killPlayer = this.killPlayer.bind(this);
+    this.endGame = this.endGame.bind(this);
 
     if (this.state.role === 'mafia' && !this.state.voteOver) {
       this.state.pathname = "/OpenEyesMafia";
@@ -53,6 +54,10 @@ class CloseEyes extends Component {
     }, 5000);
   }
 
+  endGame(win) {
+    this.setState({pathname: '/GameOver', gameOver: true, winner: win});
+  }
+
   componentWillMount() {
     const socket = socketIOClient(format("serverURL"));
     socket.on('kill player', function(player){
@@ -65,6 +70,10 @@ class CloseEyes extends Component {
     );
     socket.on('mafia wakeup', function(){
       this.setState({playsound: true}); 
+      }.bind(this)
+    );
+    socket.on('end game', function(winner){
+      this.endGame(winner);
       }.bind(this)
     );
   }
@@ -97,6 +106,9 @@ class CloseEyes extends Component {
 
   render() {
     // const { classes } = this.props;
+    if (this.state.gameOver) {
+      return <Redirect to={this.state} />
+    }
     if (this.state.Redirect) {
       return <Redirect to={this.state} />
     }

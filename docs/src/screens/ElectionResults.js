@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import Header from '../components/Header';
 import socketIOClient from "socket.io-client";
 import VoteBreakdown from './VoteBreakdown';
+import { Redirect } from 'react-router-dom';
 
 // more components under component demos here
 // https://material-ui.com/
@@ -30,7 +31,9 @@ class ElectionResults extends Component {
     this.state = props.location;
     this.state.pathname = "/CloseEyes";
     this.state.fromElection = true;
+    this.state.winner = 'nobody';
     this.hangPlayer = this.hangPlayer.bind(this);
+    this.endGame = this.endGame.bind(this);
   }
 
   componentWillMount() {
@@ -39,36 +42,36 @@ class ElectionResults extends Component {
       this.hangPlayer(player); 
       }.bind(this)
     );
+    socket.on('end game', function(winner){
+      this.endGame(winner);
+      }.bind(this)
+    );
+  }
+
+  endGame(win) {
+    this.setState({pathname: '/GameOver', gameOver: true, winner: win});
   }
 
   hangPlayer(player) {
     //keep track of how many people have voted so we know if everyone has voted
     this.setState({voterTurnout: this.state.voterTurnout + 1});
 
-    //If there is no frontrunner this is the first ballot. player becomes frontrunner. 
-    if (this.state.frontRunner.votes === 0) {
-      this.setState({frontRunner: {name: player, votes: 1}});
-    }
-
     //If player already has votes add 1 more. 
     if(player in this.state.tally) {
       this.state.tally[player] = this.state.tally[player] + 1;
-
-      //Check if player is now frontrunner
-      if(this.state.tally[player] > this.state.frontRunner.votes) {
-        this.setState({frontRunner: {name: player, votes: this.state.tally[player]}});
-      }
     }
     else {
-      //If player has no votes either became first frontrunner so just add player to tally
+      //If player has no votes add player to tally
       this.state.tally[player] = 1;
     }
 
-    //If they died dont move on
-    if(this.state.frontRunner.name === this.state.name) {
-      this.setState({pathname: "/YouDied"});
+    //Check if player is now frontrunner
+    if(this.state.tally[player] > this.state.frontRunner.votes) {
+      this.setState({pathname: "/YouDied", frontRunner: {name: player, votes: this.state.tally[player]}});
     }
-    else {
+
+    //If no longer frontrunner path goes back to /CloseEyes
+    if(this.state.frontRunner.name !== this.state.name) {
       this.setState({pathname: "/CloseEyes"});
     }
 
@@ -76,36 +79,37 @@ class ElectionResults extends Component {
     this.setState(this.state);
   }
 
-  election = () => {
-    if(!this.isGameOver()) {
+  election() {
+    var over = this.isGameOver();
+    if(!over.isOver) {
       const socket = socketIOClient(format("serverURL"));
       socket.emit('execute player', this.state.frontRunner.name);
     }
     else {
+      this.setState({pathname: "/GameOver", winner: over.winner});
       const socket = socketIOClient(format("serverURL"));
-      socket.emit('end game', this.state.winner);
+      socket.emit('end game', over.winner);
     } 
   }
 
-  isGameOver = () => {
+  isGameOver() {
     var mafia = this.state.players.find(p => p.role === 'mafia').name;
-    debugger;
     if(this.state.frontRunner.name === mafia) {
-      this.setState({pathname: "/GameOver"});
-      this.setState({winner: 'villagers'});
-      return true;
+      //this.setState({pathname: "/GameOver", winner: 'villagers'});
+      return {isOver: true, winner: 'villagers'};
     }
     else if(this.state.players.length <= 4){
-      this.setState({pathname: "/GameOver"});
-      this.setState({winner: 'mafia'});
-      return true;
+      //this.setState({pathname: "/GameOver", winner: 'mafia'});
+      return {isOver: true, winner: 'mafia'};
     }
-    return false;
+    return {isOver: false, winner: ''};
   }
 
   render() {
     const { classes } = this.props;
-
+    if (this.state.gameOver) {
+      return <Redirect to={this.state} />
+    }
     return (
       <Header title="Oh no!">
         <p>The Town has decided....</p>

@@ -96,7 +96,7 @@ class CreateRoom extends Component {
               }}
               id="game-code"
               label={format("gameCode.label")}
-              defaultValue="0000"
+              defaultValue="001"
               className={classes.textField}
               margin="normal"
               variant="outlined"

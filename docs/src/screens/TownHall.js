@@ -108,9 +108,9 @@ class TownHall extends Component {
       <div className="town-hall">
         <Header title={format('townHall.title.label')}>
           <img className="icon" src={icon} alt="town-hall"/>
-          <h2 className="town-hall town-hall-title">Time To Discuss!</h2>
+          <h2 className="town-hall town-hall-title">Time To Discuss</h2>
           <p className="town-hall town-hall-body">{format('townHall.description')}</p>
-          <h2 className="town-hall town-hall-title">Town Hall Ballot</h2>
+          <h2 className="town-hall town-hall-title">Cast your vote</h2>
           <VoteRadioGroup user={mocked.name} players={mocked.players} setVictim={this.setVictim.bind(this)}/>
           <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className="confirm-button"

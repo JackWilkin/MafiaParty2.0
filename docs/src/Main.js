@@ -8,7 +8,6 @@ import WaitingRoom from './screens/WaitingRoom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import TownHall from './screens/TownHall';
-import RoleAssignment from './screens/RoleAssignment';
 import InitiateGame from './screens/InitiateGame';
 import CloseEyes from './screens/CloseEyes';
 import OpenEyes from './screens/OpenEyes';
@@ -20,6 +19,7 @@ import VillagerRole from './screens/VillagerRole';
 import ElectionResults from './screens/ElectionResults';
 import YouDied from './screens/YouDied';
 import GameOver from './screens/GameOver';
+import Rules from './screens/Rules';
 
 const theme = createMuiTheme({
   palette: {
@@ -41,7 +41,7 @@ class Main extends Component {
               <Route path="/WaitingRoom" component={WaitingRoom} />
               <Route path="/TownHall" component={TownHall} />
               <Route path="/InitiateGame" component={InitiateGame} />
-              <Route path="/RoleAssignment" component={RoleAssignment} />
+              <Route path="/Rules" component={Rules} />
               <Route path="/CloseEyes" component={CloseEyes} />
               <Route path="/OpenEyes" component={OpenEyes} />
               <Route path="/OpenEyesMafia" component={OpenEyesMafia} />

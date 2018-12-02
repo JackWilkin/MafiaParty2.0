@@ -76,13 +76,12 @@ class MafiaVote extends Component {
       <div className="mafia-vote">
         <Header title={format('mafiaVote.title.label')}>
           {/* <img className="icon" src={icon} alt="gun"/> */}
-            <h2 className="mafia-vote">Choose your victim:</h2>
             
             <VoteRadioGroup user={this.state.name} players={victims} setVictim={this.setVictim.bind(this)}/>
             <div className="centered-content">
-            <Button variant="contained" component={Link} to={this.state} className="confirm-button" 
-            onClick={() => this.killPlayer()}>Confirm</Button>
-          </div>
+              <Button variant="contained" component={Link} to={this.state} className="confirm-button" 
+              onClick={() => this.killPlayer()}>Confirm</Button>
+            </div>
         </Header>
       </div>
     );

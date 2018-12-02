@@ -37,14 +37,13 @@ class VillagerRole extends Component {
     
     return (
       <div className="role-assignment">
-      <Header title={format('roleAssignment.title.label')}>
-      <h3 className="role-assignment-title">An innocent villager</h3>
-      <img className="icon" src={icon} alt="villager"/>
-      <p>{format('villagerRole.description')}</p>
-      <div className="centered-content">
-        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-          {format("global.next.txt")}
-        </Button>
+      <Header title={format('villagerRole.title.label')}>
+        <img className="icon" src={icon} alt="villager"/>
+        <p className='role-description'>{format('villagerRole.description')}</p>
+        <div className="centered-content">
+          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
+            {format("global.next.txt")}
+          </Button>
         </div>
        </Header>
       </div>

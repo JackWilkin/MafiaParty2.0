@@ -42,7 +42,7 @@ class InitiateGame extends Component {
       <img className="icon" src={icon} alt="eyes"/>
       <p>{format('initiateGame.text')}</p>
       <div className="centered-content">
-                <Button className="ready-button"variant="contained" component={Link} to={this.state}>{format("global.ready.txt")}</Button>
+        <Button className="ready-button"variant="contained" component={Link} to={this.state}>{format("global.startGame.txt")}</Button>
       </div>
        </Header>
       </div>

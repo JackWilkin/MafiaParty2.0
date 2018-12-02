@@ -19,7 +19,8 @@ import icon from './images/mafia.svg';
 
 // required if you're using the material components
 const styles = theme => ({
-    sampleClassName: {
+    roleDescription: {
+      marginTop: '20px',
     },
   });
 
@@ -36,15 +37,14 @@ class MafiaRole extends Component {
     const { classes } = this.props;
     
     return (
-      <div className="role-assignment">
-      <Header title={format('roleAssignment.title.label')}>
-      <h3 className="role-assignment-title">A member of the Mafia</h3>
-      <img className="icon" src={icon} alt="mafia"/>
-      <p>{format('mafiaRole.description')}</p>
-      <div className="centered-content">
-        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-          {format("global.next.txt")}
-        </Button>
+      <div className="mafia-role">
+      <Header title={format('mafiaRole.title.label')}>
+        <img className="icon" src={icon} alt="mafia"/>
+        <p className="role-description">{format('mafiaRole.description')}</p>
+        <div className="centered-content">
+          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
+            {format("global.next.txt")}
+          </Button>
         </div>
        </Header>
       </div>

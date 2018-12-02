@@ -12,10 +12,10 @@ const styles = theme => ({
     display: 'flex',
   },
   formControl: {
-    margin: theme.spacing.unit * 3,
+    margin: '10px 30px',//theme.spacing.unit * 3,
   },
   group: {
-    margin: `${theme.spacing.unit}px 0`,
+    margin: 0,//`${theme.spacing.unit}px 0`,
   },
 });
 

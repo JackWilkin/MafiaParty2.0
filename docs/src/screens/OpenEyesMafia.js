@@ -36,11 +36,13 @@ class OpenEyes extends Component {
     
     return (
       <Header title="Open Your Eyes">
-      <img className="icon" src={icon} alt="eyes"/>
-        <p>Time to wake up</p>
-        <Button variant="contained" component={Link} to={this.state} className={classes.button}>
-          {format("global.next.txt")}
-        </Button>
+        <img className="icon" src={icon} alt="alarm-clock"/>
+        <div className="centered-content">
+        <p>{format("openEyes.txt")}</p>
+          <Button variant="contained" component={Link} to={this.state} className={classes.button}>
+            {format("global.next.txt")}
+          </Button>
+        </div>
       </Header>
     );
   }

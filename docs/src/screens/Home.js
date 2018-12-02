@@ -70,6 +70,9 @@ class Home extends Component {
                         onClick={() => this.updatePathname("/CreateRoom")}>
                             {format("home.createRoom.txt")}
                         </Button>
+                        {/* <Button variant="contained" component={Link} to="/Rules" id='how-to-play'>
+                            How to play
+                        </Button> */}
                     </div>
                 </div>
             </Header>

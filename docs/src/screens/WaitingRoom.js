@@ -42,6 +42,7 @@ class WaitingRoom extends Component {
     //everyone currently is villager
     //give the game a villian
     this.state.players[rand].role = 'mafia';
+    this.setState({mafia: this.state.players[rand].name});    
 
     const socket = socketIOClient(format("serverURL"));
     socket.emit('start game', this.state.players)
@@ -54,6 +55,9 @@ class WaitingRoom extends Component {
       if(this.state.players[i].name === this.state.name && this.state.players[i].role === 'mafia') {
         this.setState({role: 'mafia'});
         this.setState({pathname: "/MafiaRole"});
+      }
+      if(this.state.players[i].role === 'mafia') {
+        this.setState({mafia: this.state.players[i].name});    
       }
     }
     this.Redirect = true;

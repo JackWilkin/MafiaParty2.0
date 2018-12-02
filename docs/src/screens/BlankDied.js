@@ -37,11 +37,9 @@ class BlankDied extends Component {
     const { classes } = this.props;
 
     return (
-      <Header title="Oh no!">
+      <Header title={this.state.victim + ' has been murdered'}>
       <img className="icon" src={icon} alt="coffin"/>
-      <p>{this.state.victim} has been found dead!</p>
         <p>{format("blankDied.text")}</p>
-        
         
         <div className="centered-content">
           <Button variant="contained" component={Link} to={this.state} className={classes.button}>

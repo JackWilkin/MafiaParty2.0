@@ -95,11 +95,9 @@ class ElectionResults extends Component {
   isGameOver() {
     var mafia = this.state.players.find(p => p.role === 'mafia').name;
     if(this.state.frontRunner.name === mafia) {
-      //this.setState({pathname: "/GameOver", winner: 'villagers'});
       return {isOver: true, winner: 'villagers'};
     }
     else if(this.state.players.length <= 4){
-      //this.setState({pathname: "/GameOver", winner: 'mafia'});
       return {isOver: true, winner: 'mafia'};
     }
     return {isOver: false, winner: ''};
@@ -111,13 +109,12 @@ class ElectionResults extends Component {
       return <Redirect to={this.state} />
     }
     return (
-      <Header title="Oh no!">
-        <p>The Town has decided....</p>
-        {this.state.voterTurnout === this.state.players.length &&
-        <p>{this.state.frontRunner.name} Has Died!!!!</p>
-        }
-
+      <Header title="Election Results">
+        <p>The votes are being tallied</p>
         <VoteBreakdown votes={this.state.tally}></VoteBreakdown>
+        {this.state.voterTurnout === this.state.players.length &&
+        <p>{this.state.frontRunner.name} has been found guilty and will be executed for the saftey of the town</p>
+        }
         {this.state.voterTurnout === this.state.players.length &&
           <div className="centered-content">
             <Button variant="contained" component={Link} to={this.state} className={classes.button}

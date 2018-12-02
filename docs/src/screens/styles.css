@@ -1,6 +1,6 @@
 .button-container, .form-container {
     margin: auto;
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: column;
 }
@@ -17,13 +17,14 @@
 }
 
 .centered-content {
-    display: flex;
+    display: grid;
     justify-content: center;
 }
 
 p {
     margin-left: 10px;
     margin-right: 10px;
+    font-size: 120%;
 }
 
 .icon {
@@ -37,4 +38,14 @@ p {
     font-size: 140%;
     margin-top: 0;
     margin-bottom: 30px;
+}
+
+#how-to-play {
+    margin-top: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.role-description {
+    margin-top: 40px;
 }

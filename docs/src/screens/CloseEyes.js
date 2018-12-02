@@ -114,8 +114,10 @@ class CloseEyes extends Component {
     }
     return (
       <Header title="Close Your Eyes">
-      <img className="icon" src={icon} alt="eyes"/>
-        <p>It is now night, time to go to sleep</p>
+        <img className="icon" src={icon} alt="eyes"/>
+        <div className="centered-content">
+          <p>{format("closeEyes.txt")}</p>
+        </div>
         {this.state.playsound &&
         <Sound
           url={soundfile}

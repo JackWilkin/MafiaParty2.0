@@ -52,10 +52,7 @@ class ElectionResults extends Component {
 
     //If player already has votes add 1 more. 
     if(player in this.state.tally) {
-      let tally = {};
-      tally.assign(this.state.tally);
-      tally[player] += 1;
-      this.setState({tally: tally});
+      this.state.tally[player] = this.state.tally[player] + 1;
 
       //Check if player is now frontrunner
       if(this.state.tally[player] > this.state.frontRunner.votes) {

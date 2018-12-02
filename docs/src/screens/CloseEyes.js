@@ -70,7 +70,8 @@ class CloseEyes extends Component {
   }
 
   killPlayer(player) {
-    this.setState({victim: player}); 
+    this.setState({victim: player});
+    this.setState({playsound: false}); 
     var victim = this.state.players.find(p => p.name === player);
     var index = this.state.players.indexOf(victim);
 
